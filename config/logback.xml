@@ -1,0 +1,21 @@
+<!-- Logback configuration. See http://logback.qos.ch/manual/index.html -->
+<configuration>
+  <!-- Console output - INFO level and above only -->
+  <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>%-5level %logger{36} - %msg%n</pattern>
+    </encoder>
+    <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+      <level>INFO</level>
+    </filter>
+  </appender>
+
+  <!-- Set root logger to WARN level - only warnings and errors -->
+  <root level="WARN">
+    <appender-ref ref="STDOUT" />
+  </root>
+  
+  <!-- Only show INFO for your application namespace -->
+  <logger name="vv-otx-service" level="INFO" />
+
+</configuration>

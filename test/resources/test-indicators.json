@@ -1,0 +1,30 @@
+[
+ {
+   "indicators": [
+     {
+       "indicator": "85.93.20.243",
+       "description": "",
+       "created": "2018-07-09T18:02:40",
+       "title": "",
+       "content": "",
+       "type": "IPv4",
+       "id": 460576
+     },
+     {
+       "indicator": "221.194.44.211",
+       "description": "On: 2018-07-09T17:53:05.541000OS detected: Linux 3.11 and newer",
+       "created": "2018-07-09T18:02:40",
+       "title": "",
+       "content": "",
+       "type": "IPv4",
+       "id": 671506
+     }
+   ],
+   "author_name": "marcoramilli",
+   "created": "2018-07-09T18:02:39.394000",
+   "modified": "2018-07-09T18:02:39.394000",
+   "public": 1,
+   "tags": ["suricata", "cowrie"],
+   "tlp": "green"
+ }
+]
