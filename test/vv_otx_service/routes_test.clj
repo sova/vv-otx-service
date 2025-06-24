@@ -9,7 +9,7 @@
             [io.pedestal.http :as http]
             [io.pedestal.test :as test]))
 
-;; Test data matching your test-indicators.json structure
+;; Test data matching the test-indicators.json structure
 (def test-data
   [{:indicators [{:indicator "85.93.20.243"
                   :description ""
