@@ -1,4 +1,4 @@
-(defproject vv-otx-service "0.0.7"
+(defproject vv-otx-service "0.0.8"
   :description "VV OTX Service for Centripetal Networks"
   :url ""
   :license {:name "Eclipse Public License"
@@ -31,4 +31,4 @@
                                   [thheller/shadow-cljs "2.28.8"]]}
              :uberjar {:aot :all}}
   :main vv-otx-service.core
-  :uberjar-name "vv-otx-service-0.0.7-standalone.jar")
+  :uberjar-name "vv-otx-service-0.0.8-standalone.jar")

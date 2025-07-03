@@ -208,7 +208,7 @@
     (let [db (create-test-db)
           route-set (routes/routes db)]
       (is (set? route-set))
-      (is (= 3 (count route-set)))
+      (is (= 5 (count route-set)))
 
       ;; Check that all expected routes are present
       (let [route-paths (map first route-set)]

@@ -132,6 +132,7 @@
   (try
     (let [api-routes (routes/routes db)
           home-routes #{["/" :get (conj common-interceptors `home-page) :route-name :home]
+                        ["/search" :get (conj common-interceptors `home-page) :route-name :search] ;; Added /search route
                         ["/js/*path" :get (conj common-interceptors `static-file-handler) :route-name :js-files]
                         ["/css/*path" :get (conj common-interceptors `static-file-handler) :route-name :css-files]
                         ["/assets/*path" :get (conj common-interceptors `static-file-handler) :route-name :asset-files]}]
@@ -144,6 +145,7 @@
       ;; Return a minimal route set if routes fail to load
       (route/expand-routes
        #{["/" :get (conj common-interceptors `home-page) :route-name :home]
+         ["/search" :get (conj common-interceptors `home-page) :route-name :search] ;; Added /search route
          ["/js/*path" :get (conj common-interceptors `static-file-handler) :route-name :js-files]
          ["/health" :get (conj common-interceptors
                                (fn [_] {:status 200

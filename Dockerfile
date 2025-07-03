@@ -1,14 +1,9 @@
-# Use a slim Java runtime as the base image
 FROM eclipse-temurin:17-jre
-
-# Set the working directory inside the container
 WORKDIR /app
-
-# Copy the UberJAR built by Leiningen
-COPY target/uberjar/vv-otx-service-0.0.7-standalone.jar /app/vv-otx-service.jar
-
-# Expose the port the service runs on (8080)
+COPY target/uberjar/vv-otx-service-0.0.8-standalone.jar /app/vv-otx-service.jar
+COPY public/index.html /app/public/index.html
+# Create directory for static files
+RUN mkdir -p /app/public/js
+COPY public/js/main.js /app/public/js/main.js
 EXPOSE 8080
-
-# Run the application
 CMD ["java", "-jar", "/app/vv-otx-service.jar"]

@@ -5,10 +5,11 @@ A RESTful microservice built in Clojure, Pedestal, and Component to serve and se
 - Install Leiningen: https://leiningen.org/
 - Run: `lein run`
 - Build UberJar: `./build.sh`
-- Build Docker: `docker build -t my-otx-service .`
+- Build Docker: `DOCKER_BUILDKIT=1 docker build --no-cache -t vv-otx-service .`
 - Run Docker: `docker run -p 8080:8080 vv-otx-service`
 
 - ## Endpoints
+- `/`: ClojureScript frontend for easy searching.
 - `GET /indicators/:id`: Get an indicator by ID.
 - `GET /indicators`: Get all indicators.
 - `GET /indicators?type=:type`: Get indicators by type.
