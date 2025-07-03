@@ -1,0 +1,16 @@
+{
+ "name": "vv-otx-service",
+ "version": "0.0.7",
+ "description": "Frontend for VV OTX Service using Shadow-CLJS",
+ "private": true,
+ "scripts": {
+  "watch": "npx shadow-cljs watch app",
+  "build": "npx shadow-cljs compile app"
+ },
+ "dependencies": {
+  "fetch": "^1.1.0",
+  "react": "^18.2.0",
+  "react-dom": "^18.2.0",
+  "shadow-cljs": "2.28.8"
+ }
+}

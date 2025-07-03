@@ -17,11 +17,18 @@
                  [org.slf4j/jul-to-slf4j "1.7.35"]
                  [org.slf4j/jcl-over-slf4j "1.7.35"]
                  [org.slf4j/log4j-over-slf4j "1.7.35"]
-                 [org.clojure/tools.logging "1.3.0"]]
+                 [org.clojure/tools.logging "1.3.0"]
+                 [ring-cors/ring-cors "0.1.13"]
+                 [reagent "1.2.0"]
+                 [thheller/shadow-cljs "3.1.7"]]
   :min-lein-version "2.0.0"
-  :resource-paths ["config" "resources" "test/resources"]
-  :profiles {:dev {:aliases {"run-dev" ["trampoline" "run" "-m" "vv-otx-service.server/run-dev"]}
-                   :dependencies [[io.pedestal/pedestal.service-tools "0.7.2"]]} 
+  :source-paths ["src" "cljs-src"]
+  :resource-paths ["config" "resources" "test/resources" "public"] 
+  :profiles {:dev {:aliases {"run-dev" ["do"
+                                        ["trampoline" "run" "-m" "vv-otx-service.server/run-dev"]
+                                        ["shadow" "watch" "app"]]}
+                   :dependencies [[io.pedestal/pedestal.service-tools "0.7.2"]
+                                  [thheller/shadow-cljs "2.28.8"]]}
              :uberjar {:aot :all}}
   :main vv-otx-service.core
   :uberjar-name "vv-otx-service-0.0.7-standalone.jar")

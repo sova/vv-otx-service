@@ -1,4 +1,9 @@
 # Project related
+.shadow-cljs
+.clj-kondo
+node_modules
+public/js/cljs-runtime
+**/.clj-kondo/
 
 # Java related
 pom.xml
@@ -35,4 +40,3 @@ repl-port
 # Builds
 out/
 build/
-
