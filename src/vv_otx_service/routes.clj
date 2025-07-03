@@ -49,10 +49,12 @@
 
 (defn routes [db]
   #{["/indicators/search" :post [(body-params/body-params) (db-interceptor db) search-indicators-handler] :route-name :search-indicators]
+    ["/indicators/search" :options [(db-interceptor db) (fn [_] {:status 200 :body "" :headers {}})] :route-name :search-indicators-options]
     ["/indicators/:id" :get [(db-interceptor db) indicator-handler] :route-name :get-indicator]
     ["/indicators" :get [(db-interceptor db)
                          (fn [request]
                            (if (get-in request [:query-params :type])
                              (get-indicators-by-type request)
                              (get-all-indicators request)))]
-     :route-name :get-indicators]})
+     :route-name :get-indicators]
+    ["/indicators" :options [(db-interceptor db) (fn [_] {:status 200 :body "" :headers {}})] :route-name :get-indicators-options]})

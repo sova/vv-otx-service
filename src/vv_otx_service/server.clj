@@ -51,7 +51,6 @@
          :body "File not found"
          :headers {"Content-Type" "text/plain"}}))))
 
-;; Enhanced CORS interceptor - allow multiple origins including localhost:8080
 (def cors-interceptor
   (cors/allow-origin {:allowed-origins ["http://localhost:3001" "http://localhost:8080" "http://127.0.0.1:8080"]
                       :creds true
@@ -132,11 +131,10 @@
 (defn all-routes [db]
   (try
     (let [api-routes (routes/routes db)
-          home-routes #{["/" :get (conj common-interceptors `home-page)]
-                        ;; Add static file route
-                        ["/js/*path" :get (conj common-interceptors `static-file-handler)]
-                        ["/css/*path" :get (conj common-interceptors `static-file-handler)]
-                        ["/assets/*path" :get (conj common-interceptors `static-file-handler)]}]
+          home-routes #{["/" :get (conj common-interceptors `home-page) :route-name :home]
+                        ["/js/*path" :get (conj common-interceptors `static-file-handler) :route-name :js-files]
+                        ["/css/*path" :get (conj common-interceptors `static-file-handler) :route-name :css-files]
+                        ["/assets/*path" :get (conj common-interceptors `static-file-handler) :route-name :asset-files]}]
       (log/info "API routes:" api-routes)
       (route/expand-routes
        (clojure.set/union home-routes api-routes)))
@@ -145,12 +143,12 @@
       (log/error "Exception details:" e)
       ;; Return a minimal route set if routes fail to load
       (route/expand-routes
-       #{["/" :get (conj common-interceptors `home-page)]
-         ["/js/*path" :get (conj common-interceptors `static-file-handler)]
+       #{["/" :get (conj common-interceptors `home-page) :route-name :home]
+         ["/js/*path" :get (conj common-interceptors `static-file-handler) :route-name :js-files]
          ["/health" :get (conj common-interceptors
                                (fn [_] {:status 200
                                         :body "OK"
-                                        :headers {"Content-Type" "text/plain"}}))]}))))
+                                        :headers {"Content-Type" "text/plain"}})) :route-name :health]}))))
 
 (defrecord WebServer [port db server]
   component/Lifecycle
@@ -162,10 +160,8 @@
                        ::http/host "0.0.0.0"
                        ::http/port port
                        ::http/join? false
-                       ;; Enable CORS at the service level - allow multiple origins
                        ::http/allowed-origins {:creds true
                                                :allowed-origins ["http://localhost:3001" "http://localhost:8080" "http://127.0.0.1:8080"]}
-                       ;; Enable session support
                        ::http/enable-session {}
                        ::http/container-options {:h2c? true
                                                  :h2? false
