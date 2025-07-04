@@ -1,5 +1,5 @@
 # VV OTX Microservice
-A RESTful microservice built in Clojure, Pedestal, and Component to serve and search AlienVault OTX pulses.
+A RESTful microservice with a searchable frontend, built in Clojure, Pedestal, Component, and ClojureScript to serve and search AlienVault OTX pulses.
 
 ## Setup
 - Install Leiningen: https://leiningen.org/
@@ -7,6 +7,7 @@ A RESTful microservice built in Clojure, Pedestal, and Component to serve and se
 - Build UberJar: `./build.sh`
 - Build Docker: `DOCKER_BUILDKIT=1 docker build --no-cache -t vv-otx-service .`
 - Run Docker: `docker run -p 8080:8080 vv-otx-service`
+- Navigate to frontend: `http://localhost:8080`
 
 - ## Endpoints
 - `/`: ClojureScript frontend for easy searching.
